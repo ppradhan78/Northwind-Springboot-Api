@@ -1,0 +1,43 @@
+package com.northwindspringbootapi.repository.Impl;
+
+import com.northwindspringbootapi.entity.User;
+import com.northwindspringbootapi.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+@RequiredArgsConstructor
+public class UserRepositoryImpl implements UserRepository {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        String sql = "SELECT u.UserId, u.Username, u.PasswordHash,u.Email,u.PhoneNumber,r.RoleName FROM " +
+                " Users u join UserRoles ur on u.UserId=ur.UserId join Roles r on ur.RoleId=r.RoleId " +
+                " WHERE u.Username = ?";
+        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), username);
+        return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
+    }
+
+    private static class UserRowMapper implements RowMapper<User> {
+        @Override
+        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return User.builder()
+                    .userId(rs.getInt("UserId"))
+                    .username(rs.getString("Username"))
+                    .passwordHash(rs.getString("PasswordHash"))
+                    .email(rs.getString("Email"))
+                    .phoneNumber(rs.getString("PhoneNumber"))
+                    .role(rs.getString("RoleName"))
+                    .build();
+        }
+    }
+}
