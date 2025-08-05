@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findByUsername(String username) {
         String sql = "SELECT u.UserId, u.Username, u.PasswordHash,u.Email,u.PhoneNumber,r.RoleName FROM " +
-                " Users u join UserRoles ur on u.UserId=ur.UserId join Roles r on ur.RoleId=r.RoleId " +
+                " Users u join UserRole ur on u.UserId=ur.UserId join Roles r on ur.RoleId=r.RoleId " +
                 " WHERE u.Username = ?";
         List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), username);
         return users.isEmpty() ? Optional.empty() : Optional.of(users.get(0));
