@@ -27,10 +27,27 @@ public class RolePermissionRepositoryImpl  implements RolePermissionRepository {
                 RolePermissionDTO dto = new RolePermissionDTO();
                 dto.setRole(rs.getString("Role"));
                 dto.setPermissions(rs.getString("Permissions"));
-                dto.setCanView(rs.getBoolean("View"));
-                dto.setCanCreate(rs.getBoolean("Create"));
-                dto.setCanEdit(rs.getBoolean("Edit"));
-                dto.setCanDelete(rs.getBoolean("Delete"));
+                dto.setView(rs.getBoolean("View"));
+                dto.setCreate(rs.getBoolean("Create"));
+                dto.setEdit(rs.getBoolean("Edit"));
+                dto.setDelete(rs.getBoolean("Delete"));
+//                int viewValue = rs.getInt("View");
+//                dto.setView(viewValue == 1);
+//                int createValue = rs.getInt("Create");
+//                dto.setCreate(createValue == 1);
+//                int editValue = rs.getInt("Edit");
+//                dto.setEdit(editValue == 1);
+//                int deleteValue = rs.getInt("Delete");
+//                dto.setDelete(deleteValue == 1);
+//                String viewString = rs.getString("View");
+//                dto.setView(Boolean.parseBoolean(viewString));
+//
+//                String createString = rs.getString("Create");
+//                dto.setCreate(Boolean.parseBoolean(createString));
+//                String editString = rs.getString("Edit");
+//                dto.setEdit(Boolean.parseBoolean(editString));
+//                String deleteString = rs.getString("Delete");
+//                dto.setDelete(Boolean.parseBoolean(deleteString));
                 return dto;
             }
         });

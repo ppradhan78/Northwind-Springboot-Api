@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class RolePermissionDTO {
     private String Role;
     private String Permissions;
-    private boolean CanView;
-    private boolean CanCreate;
-    private boolean CanEdit;
-    private boolean CanDelete;
+    private boolean View;
+    private boolean Create;
+    private boolean Edit;
+    private boolean Delete;
 }

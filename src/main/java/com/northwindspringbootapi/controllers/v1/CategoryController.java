@@ -10,17 +10,15 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin
 @RestController
-@RequestMapping("/api/categories")
+//@RequestMapping("/api/categories")
 @RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService service;
 
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('Admin')")
+    @GetMapping("/api/categories")
     public List<CategoryDTO> getAllCategories() {
         return service.getAllCategories();
     }
