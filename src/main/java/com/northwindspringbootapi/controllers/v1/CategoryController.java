@@ -11,14 +11,14 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-//@RequestMapping("/api/categories")
+@RequestMapping("/api/categories")
 @RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService service;
 
     @PreAuthorize("hasRole('Admin')")
-    @GetMapping("/api/categories")
+    @GetMapping
     public List<CategoryDTO> getAllCategories() {
         return service.getAllCategories();
     }
