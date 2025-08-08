@@ -20,10 +20,11 @@ private Key getSigningKey() {
     byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
     return Keys.hmacShaKeyFor(keyBytes);
 }
-public String generateToken(String username, String email, String phoneNumber, String role) {
+public String generateToken(String username, String email, String phoneNumber, String role,Integer UserId) {
     return Jwts.builder()
             .setSubject(username)
             .addClaims(Map.of("role", role))
+            .addClaims(Map.of("UserId", UserId))
             .addClaims(Map.of("Email", email))
             .addClaims(Map.of("PhoneNumber", phoneNumber))
             .setIssuedAt(new Date())

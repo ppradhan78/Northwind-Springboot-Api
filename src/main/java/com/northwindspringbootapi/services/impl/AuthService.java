@@ -23,6 +23,6 @@ public class AuthService {
 //        if (!BCrypt.checkpw(password, user.getPasswordHash())) {
             throw new RuntimeException("Invalid password");
         }
-        return jwtUtil.generateToken(user.getUsername(),user.getEmail(),user.getPhoneNumber(),user.getRole());
+        return jwtUtil.generateToken(user.getUsername(),user.getEmail(),user.getPhoneNumber(),user.getRole(),user.getUserId());
     }
 }
