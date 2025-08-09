@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RolePermissionDTO {
     private String Role;
+    private String UserName;
     private String Permissions;
     private boolean View;
     private boolean Create;

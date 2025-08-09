@@ -1,5 +1,6 @@
 package com.northwindspringbootapi.services.impl;
 
+import com.northwindspringbootapi.dto.CategoryDTO;
 import com.northwindspringbootapi.dto.RolePermissionDTO;
 import com.northwindspringbootapi.repository.RolePermissionRepository;
 import com.northwindspringbootapi.services.CategoryService;
@@ -17,5 +18,9 @@ public class RolePermissionServiceImpl implements RolePermissionService {
 
     public List<RolePermissionDTO> getAllPermissions() {
         return repository.getRolePermissions();
+    }
+
+    public List<RolePermissionDTO> getUserPermissionsById(Integer userId) {
+        return repository.getUserPermissionsById(userId);
     }
 }

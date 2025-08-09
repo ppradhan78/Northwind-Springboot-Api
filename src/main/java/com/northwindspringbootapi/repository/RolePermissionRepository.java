@@ -7,5 +7,5 @@ import java.util.List;
 @Repository
 public interface RolePermissionRepository {
     List<RolePermissionDTO> getRolePermissions();
-
+    List<RolePermissionDTO> getUserPermissionsById(Integer UserId);
 }

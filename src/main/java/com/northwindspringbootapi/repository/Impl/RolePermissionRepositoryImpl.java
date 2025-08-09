@@ -52,4 +52,23 @@ public class RolePermissionRepositoryImpl  implements RolePermissionRepository {
             }
         });
     }
+
+    public List<RolePermissionDTO> getUserPermissionsById(Integer UserId){
+        return jdbcTemplate.query("EXEC GetUserPermissionsActionByUserId @UserId ="+UserId, new RowMapper<RolePermissionDTO>() {
+            @Override
+            public RolePermissionDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                RolePermissionDTO dto = new RolePermissionDTO();
+                dto.setUserName(rs.getString("UserName"));
+                dto.setRole(rs.getString("Role"));
+                dto.setPermissions(rs.getString("Permissions"));
+                dto.setView(rs.getBoolean("View"));
+                dto.setCreate(rs.getBoolean("Create"));
+                dto.setEdit(rs.getBoolean("Edit"));
+                dto.setDelete(rs.getBoolean("Delete"));
+
+                return dto;
+            }
+        });
+    }
+
 }
