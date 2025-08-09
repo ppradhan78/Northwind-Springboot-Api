@@ -13,6 +13,7 @@ public class RolePermissionDTO {
     private String Role;
     private String UserName;
     private String Permissions;
+    private String Navigation;
     private boolean View;
     private boolean Create;
     private boolean Edit;

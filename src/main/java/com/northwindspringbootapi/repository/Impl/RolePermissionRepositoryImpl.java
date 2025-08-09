@@ -61,6 +61,7 @@ public class RolePermissionRepositoryImpl  implements RolePermissionRepository {
                 dto.setUserName(rs.getString("UserName"));
                 dto.setRole(rs.getString("Role"));
                 dto.setPermissions(rs.getString("Permissions"));
+                dto.setNavigation(rs.getString("Navigation"));
                 dto.setView(rs.getBoolean("View"));
                 dto.setCreate(rs.getBoolean("Create"));
                 dto.setEdit(rs.getBoolean("Edit"));
