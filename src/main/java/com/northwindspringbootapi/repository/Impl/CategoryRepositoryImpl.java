@@ -35,18 +35,21 @@ public class CategoryRepositoryImpl  implements CategoryRepository {
     }
 
     @Override
-    public void save(Category entity) {
-        jdbcTemplate.update(INSERT, entity.getCategoryName());
+    public int save(Category entity) {
+        String sql = "INSERT INTO Categories (CategoryName, Description) VALUES (?, ?)";
+        return jdbcTemplate.update(sql, entity.getCategoryName(), entity.getDescription());
     }
 
     @Override
-    public void update(Category entity) {
-        jdbcTemplate.update(UPDATE, entity.getCategoryName(), entity.getCategoryId());
+    public int update(Category entity) {
+        String sql = "UPDATE Categories SET CategoryName=?, Description=? WHERE CategoryID=?";
+        return jdbcTemplate.update(sql, entity.getCategoryName(), entity.getDescription(), entity.getCategoryId());
     }
 
     @Override
-    public void deleteById(Integer id) {
-        jdbcTemplate.update(DELETE, id);
+    public int deleteById(Integer id) {
+        String sql = "DELETE FROM Categories WHERE CategoryID=?";
+        return jdbcTemplate.update(sql, id);
     }
 
     private static class CategoryRowMapper implements RowMapper<Category> {

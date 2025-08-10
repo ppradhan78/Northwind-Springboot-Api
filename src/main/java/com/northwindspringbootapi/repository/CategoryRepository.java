@@ -11,7 +11,7 @@ public interface CategoryRepository   {
 
     List<Category> findAll();
     Optional<Category> findById(Integer id);
-    void save(Category entity);
-    void update(Category entity);
-    void deleteById(Integer id);
+    int save(Category entity);
+    int update(Category entity);
+    int deleteById(Integer id);
 }

@@ -36,22 +36,22 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void createCategory(CategoryDTO dto) {
+    public int createCategory(CategoryDTO dto) {
         CategoryModel model = categoryMapper.toModel(dto);
         Category entity = categoryMapper.modelToEntity(model);
-        repository.save(entity);
+       return repository.save(entity);
     }
 
     @Override
-    public void updateCategory(Integer id, CategoryDTO dto) {
+    public int updateCategory(Integer id, CategoryDTO dto) {
         dto.setCategoryId(id);
         CategoryModel model = categoryMapper.toModel(dto);
         Category entity = categoryMapper.modelToEntity(model);
-        repository.update(entity);
+        return repository.update(entity);
     }
 
     @Override
-    public void deleteCategory(Integer id) {
-        repository.deleteById(id);
+    public int deleteCategory(Integer id) {
+        return  repository.deleteById(id);
     }
 }
