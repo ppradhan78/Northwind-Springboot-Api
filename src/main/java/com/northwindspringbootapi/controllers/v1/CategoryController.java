@@ -29,9 +29,14 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createCategory(@RequestBody CategoryDTO dto) {
-        service.createCategory(dto);
-        return ResponseEntity.ok("Category created successfully");
+    public Map<String, String>  createCategory(@RequestBody CategoryDTO dto) {
+        int success= service.createCategory( dto);
+        if(success>0){
+            return Map.of("message", "Category created successfully");
+        }
+        else {
+            return Map.of("message", "Faill to Create Category.");
+        }
     }
 
     @PutMapping("/{id}")
@@ -46,9 +51,14 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Integer id) {
-        service.deleteCategory(id);
-        return ResponseEntity.ok("Category deleted successfully");
+    public Map<String, String>  deleteCategory(@PathVariable Integer id) {
+        int success= service.deleteCategory(id);
+        if(success>0){
+            return Map.of("message", "Category deleted successfully");
+        }
+        else {
+            return Map.of("message", "Faill to deleted Category.");
+        }
     }
 }
 
